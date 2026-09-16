@@ -1,4 +1,4 @@
-# The asklog command line, 1.4.0.
+# The asklog command line, 1.5.0.
 #
 # Generated from Formula/asklog.rb.in by packaging/render-formula.mjs. Edit
 # the template, not this file, and re-render at the next release.
@@ -9,8 +9,8 @@ class Asklog < Formula
   # `brew audit` refuses the explicit one as redundant (measured against
   # Homebrew 6.0.13). The filename is therefore load-bearing - a release that
   # renamed the tarball would silently change what the formula calls itself.
-  url "https://releases.asklog.ai/desktop/releases/1.4.0/asklog-cli-1.4.0.tar.gz"
-  sha256 "318a9b0e10cbc07320d64afd4fb1e5b60cc302844216415e808045a5844801f4"
+  url "https://releases.asklog.ai/desktop/releases/1.5.0/asklog-cli-1.5.0.tar.gz"
+  sha256 "1a8294851fe329832ba1e96d2d9668b3757dfb7d9a8e6aa64ad598fb2c910a1e"
 
   # Formula and not cask: this is a command, and casks are for `.app` bundles.
   # It is also the half of asklog that has never had an installer of any kind,
