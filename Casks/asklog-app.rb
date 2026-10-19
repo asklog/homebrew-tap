@@ -21,8 +21,8 @@
 # which is the one place a published build is recorded, and
 # `apps/web-cloud/test/packaging.test.ts` fails if the two ever disagree.
 cask "asklog-app" do
-  version "1.10.1"
-  sha256 "d06507ce0c4ab0da4ecb4d4cea8d98d260a8ae0db9c8998ea543cadec304c049"
+  version "1.12.2"
+  sha256 "d093d68efbce458186bb9ad7c94695a8d6b7ed3ba681f0fe7331b56641c132d2"
 
   url "https://releases.asklog.ai/desktop/releases/#{version}/asklog-#{version}-mac-universal.dmg",
       verified: "releases.asklog.ai/desktop/releases/"
@@ -45,20 +45,14 @@ cask "asklog-app" do
   # must not race it. `brew upgrade` therefore leaves this alone unless somebody
   # asks with `--greedy`.
   auto_updates true
-  # This describes **the published bundle**, never the build configuration,
-  # and `MAC_APP_BUILD` is the only place that distinction is recorded. Every
-  # release since 0.1.2 is universal, so there is no `depends_on arch:` line at
-  # all - one that kept `:arm64` would refuse every Intel Mac the artifact was
-  # made universal for - and the floor is what the published bundle's
-  # `Info.plist` declares, `LSMinimumSystemVersion 11.0`, read back off the
-  # 1.1.0 DMG on 2026-09-14.
-  #
-  # Big Sur is macOS 11, which is `MAC_APP_BUILD.minimumOs`. The bare symbol
-  # *is* the minimum: `">= :big_sur"` is the deprecated spelling of this exact
-  # requirement and Homebrew 6.0.13 warns on it at load time.
-  # `apps/web-cloud/test/packaging.test.ts` fails if this drifts from the
-  # record.
-  depends_on macos: :big_sur
+  # Ventura is the installation support policy for the Electron 44 upgrade,
+  # shared with /install through REQUIREMENTS.macos. The previous published
+  # DMG's measured macOS 11 floor stays in MAC_APP_BUILD; new installs must
+  # support the patched runtime. Existing 11/12 installations are protected by
+  # minimumSystemVersion: 22.0.0 in the updater feed.
+  # Every release since 0.1.2 is universal, so there is no architecture gate.
+  # The bare symbol is the minimum; ">= :ventura" is deprecated.
+  depends_on macos: :ventura
 
   app "asklog.app"
 
