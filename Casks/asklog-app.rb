@@ -21,8 +21,8 @@
 # which is the one place a published build is recorded, and
 # `apps/web-cloud/test/packaging.test.ts` fails if the two ever disagree.
 cask "asklog-app" do
-  version "2.0.11"
-  sha256 "b890e007a728a09d516c05eb7cc23f62001434bf9a92e931726f14a9f2f64b0d"
+  version "2.0.12"
+  sha256 "0e08cf35a9bc0484dbbb1e9dfe13c5295592b5d6596f25d19d83f923ea0c3b58"
 
   url "https://releases.asklog.ai/desktop/releases/#{version}/asklog-#{version}-mac-universal.dmg",
       verified: "releases.asklog.ai/desktop/releases/"
